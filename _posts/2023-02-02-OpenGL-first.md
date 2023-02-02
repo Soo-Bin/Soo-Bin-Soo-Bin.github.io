@@ -52,7 +52,7 @@ Object Coordinates를 World Coordinates로 바꾸기 위해서는 Model Matrix�
 
 Eye Coordinates는 카메라의 관점에서 바라보는 공간입니다. 이 공간은 원점 `(0,0,0)`에 고정된 카메라가 항상 -Z 축을 보는 공간입니다.
 
-![OpenGL 카메라는 항상 원점에 있고 눈 공간에서 -Z를 향합니다.](/assets/img/post/gl_camera.png)
+![OpenGL 카메라는 항상 원점에 있고 눈 공간에서 -Z를 향합니다.](/assets/img/post/gl_camera_view.png)
 
 OpenGL 카메라는 항상 원점에 있고 눈 공간에서 -Z를 향합니다.
 
