@@ -20,7 +20,7 @@ timezone: Asia/Seoul
 
 title: 10점... 10점이요! # the main title
 
-tagline: 김뻐꾹 소유주 # it will display as the sub-title
+tagline: 김뻐꾹 소유인 # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   A minimal, responsive, and powerful Jekyll theme for presenting professional writing.

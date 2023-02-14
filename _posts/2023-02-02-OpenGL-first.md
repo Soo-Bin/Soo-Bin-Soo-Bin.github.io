@@ -5,48 +5,44 @@ tags: [OpenGL]
 comments: true
 ---
 
-OpenGL에서 모든 것은 **3D 공간** 안에 있습니다. 하지만 화면과 윈도우 창은 2차원 픽셀 배열입니다. 그렇기에 (기초를 공부하는 저에게) OpenGL 작업의 큰 부분을 차지하는 것은 3D 좌표를 화면에 맞게 2D 픽셀로 변환하는 작업입니다.
+OpenGL에서 모든 것은 3D 공간 안에 있습니다. 하지만 화면과 윈도우 창은 2차원 픽셀 배열입니다. 그렇기에 (기초를 공부하는 저에게) OpenGL 작업의 큰 부분을 차지하는 것은 3D 좌표를 화면에 맞게 2D 픽셀로 변환하는 작업입니다.
 
 3D 좌표를 2D 좌표로 변환하는 작업은 OpenGL의 그래픽 파이프라인(graphics pipeline) 에 의해 관리됩니다. 그래픽 파이프라인은 여러 단계가 존재하지만 간단하게 보자면 크게 두 개의 부분으로 나뉠 수 있습니다:
 
 1. 하나는 3D 좌표를 2D 좌표로 변환하는 것이고,
 2. 다른 하나는 2D 좌표를 실제 색이 들어간 픽셀로 변환하는 것입니다.
 
-3D 좌표가 2D 좌표로 변환되기 위해서는 [그림 1]과 같은 변환을 겪어야 합니다.
+3D 좌표가 2D 좌표로 변환되기 위해서는 다음과 같은 변환을 겪어야 합니다.
 
-<figure>
-<img src="/assets/img/post/gl_pipeline.png" alt="fig 1." style="display:block; float:none; margin:0 auto;"/>
-<figcaption align="center"><b>[그림 1]</b></figcaption>
-</figure>
+![[그림 1]](/assets/img/post/gl_pipeline.png)
 
 ## Object Coordinates
 
 객체의 Local Coordinates이며 변형이 적용되기 전의 객체의 초기 위치 및 방향입니다.
 
-<figure>
-<img src="/assets/img/post/gl_model.png" alt="fig 2." width="60%" style="display:block; margin:0 auto;"/>
-<figcaption align="center"><b>[그림 2]</b></figcaption>
-</figure>
+즉, 다음과 같이 모든 객체는 중심점을 `(0,0,0)`으로 설정한 고유의 축이 존재합니다.
 
-즉, [그림 2]처럼 모든 객체는 중심점을 `(0,0,0)`으로 설정한 고유의 축이 존재합니다.
+![[그림 2]](/assets/img/post/gl_model.png){: width="60%"; float="right"}
 
 ## World Coordinates
 
-[그림 3]과 같이 모든 객체는 World Coordinates 안에 존재합니다.
+아래와 같이 모든 객체는 World Coordinates 안에 존재합니다.
 
 ![[그림 3]](/assets/img/post/gl_world.png)
 
-[그림 3]
-
 Object Coordinates를 World Coordinates로 바꾸기 위해서는 Model Matrix을 곱하면 됩니다.
 
-![Untitled](/assets/img/post/gl_mat_world.png)
+<div align="right">
+<img src="/assets/img/post/gl_mat_world.png" width="70%">
+</div>
 
 하지만, 여기서 중요한 것은 OpenGL의 World Coordinates가 Geographic World Coordinates(지리 좌표계)와 축이 다르다는 것만 알면 됩니다.
 
 ![[그림 4] OpenGL의 World Coordinates(좌) / Geographic World Coordinates(우)](/assets/img/post/gl_axis.png)
 
-[그림 4] OpenGL의 World Coordinates(좌) / Geographic World Coordinates(우)
+<center>
+<p>OpenGL의 World Coordinates(좌) / Geographic World Coordinates(우)</p>
+</center>
 
 ## Eye Coordinates
 
@@ -58,15 +54,20 @@ OpenGL 카메라는 항상 원점에 있고 눈 공간에서 -Z를 향합니다.
 
 방금 전 우리는 Object Coordinates를 World Coordinates로 바꿨습니다. 여기서 View Matrix을 곱하면 World Coordinates에서 Eye Coordinates로 변환이 가능합니다.
 
-![Untitled](/assets/img/post/gl_mat_eye.png)
+<div align="right">
+<img src="/assets/img/post/gl_mat_eye.png" width="70%">
+</div>
 
 하지만 수식을 본다고 모든 것이 이해되지 않습니다.
 
-[그림 5]를 통해 다시 생각해봅시다.
+아래 그림을 통해 다시 생각해봅시다.
 
 ![[그림 5] Eye space로 이동하는 오리](/assets/img/post/gl_camera02.gif)
 
-[그림 5] Eye space로 이동하는 오리
+<center>
+<b>Eye space로 이동하는 오리</b>
+</center>
+<br>
 
 카메라가 World space의 `(2,0,3)`에 있고 `(0,0,0)`을 보고 있다고 가정합니다. 이 경우에 대한 View Matrix를 구성하려면 세계를 `(-2,0,-3)`으로 변환하고 Y축을 따라 약 -33.7도 회전해야 합니다. 결과적으로 가상 카메라는 원점에서 -Z 축을 향하게 됩니다.
 
@@ -80,19 +81,18 @@ _혹시 GLM의 도움을 받지 않는다면 [[여기]](http://www.songho.ca/ope
 
 먼저 Projection Matrix을 곱하면 Eye Coordinates에서 Clip Coordinates로 변환이 가능합니다.
 
-![Untitled](/assets/img/post/gl_mat_clip.png)
+<div style="margin-left: 100px" align="right">
+<img src="/assets/img/post/gl_mat_clip.png" width="80%">
+</div>
+<br>
 
 Clipping이란 오려낸다는 의미입니다.
 
-![[그림 6]](/assets/img/post/gl_clip.png)
-
-[그림 6]
+![[그림 6]](/assets/img/post/gl_clip.png){: width="60%"}
 
 즉, OpenGL에서 Clip Coordinates란 지정된 범위의 좌표를 받아들이고 이 범위에서 벗어난 모든 좌표는 clipped(자르다)됩니다. 범위를 지정하는 것은 2가지 방법으로 나뉩니다.
 
 ![[그림 7]](/assets/img/post/gl_frustum.png)
-
-[그림 7]
 
 Near clip plane부터 Far clip plane 사이의 공간을 절두체(Frustum)라고 부릅니다.
 
@@ -118,37 +118,33 @@ _Orthographic projection과 Perspective projection 행렬을 GLM 도움 없이 �
 
 OpenGL은 각 vertext shader 실행 된 후 우리가 그리기 원하는 모든 vertex들이 정규화된 디바이스 좌표로 표시되기를 원합니다. 즉, 각 vertex의 `x`, `y`, `z` 좌표가 `-1.0` ~ `1.0` 범위 안에 있어야 합니다.
 
-직교 투영(orthographic projection)이라면 [그림 8]의 절두체 공간이 [그림 9] 공간으로 변환되어야 합니다.
+직교 투영(orthographic projection)이라면 다음과 같이 절두체 공간이 변환되어야 합니다.
 
-원근 투영(perspective projection)이라면 [그림 10]의 절두체 공간이 [그림 9] 공간으로 변환되어야 합니다.
+|                 Clip space                 |        |                   NDC                    |
+| :----------------------------------------: | :----: | :--------------------------------------: |
+| ![[그림 8]](/assets/img/post/gl_ortho.png) | &rarr; | ![[그림 9]](/assets/img/post/gl_ndc.png) |
 
-![[그림 8]](/assets/img/post/gl_ortho.png)
+원근 투영(perspective projection)이라면 다음과 같이 절두체 공간이 변환되어야 합니다.
 
-[그림 8]
-
-![[그림 9]](/assets/img/post/gl_ndc.png)
-
-[그림 9]
-
-![[그림 10]](/assets/img/post/gl_perspective.png)
-
-[그림 10]
+|                    Clip space                    |        |                   NDC                    |
+| :----------------------------------------------: | :----: | :--------------------------------------: |
+| ![[그림 8]](/assets/img/post/gl_perspective.png) | &rarr; | ![[그림 9]](/assets/img/post/gl_ndc.png) |
 
 위의 Clip Coordinates에서 Projection Matrix 연산으로 구한 (`x`, `y`, `z`, `w`)를 (`x/w`, `y/w`, `z/w`, `1`)와 같이 `w`로 나누어 주면 NDC 좌표로 변환됩니다.
 
 ## Window Coordinates
 
-이 부분은 실제로 화면에 출력되는 Space를 의미합니다. [그림 11]과 같이 NDC로 정규화된 좌표를 Viewport transform을 사용하여 Window Coordinates로 변환합니다. Viewport는 Screen의 왼쪽 하단이 기준점 (0,0) 입니다.
+이 부분은 실제로 화면에 출력되는 Space를 의미합니다. 아래 그림과 같이 NDC로 정규화된 좌표를 Viewport transform을 사용하여 Window Coordinates로 변환합니다. Viewport는 Screen의 왼쪽 하단이 기준점 (0,0) 입니다.
 
 ![[그림 11]](/assets/img/post/gl_screen.png)
-
-[그림 11]
 
 Viewport를 정의하기 위해 x, y, width, height를 전달 받으며, x, y는 Viewport의 좌측 하단 좌표를 의미하고 width,height는 x, y로부터 넓이와 높이가 됩니다.
 
 Window Coordinates의 좌표를 계산하고 싶으면 다음 수식을 사용하면 됩니다.
 
-![Untitled](/assets/img/post/gl_mat_screen.png)
+<div style="margin-left: 300px" align="right">
+<img src="/assets/img/post/gl_mat_screen.png" width="60%">
+</div>
 
 여기서 w=width, h=height, f=far, n=near 입니다.
 
