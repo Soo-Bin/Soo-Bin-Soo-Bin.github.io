@@ -14,19 +14,19 @@ OpenGL에서 모든 것은 **3D 공간** 안에 있습니다. 하지만 화면�
 
 3D 좌표가 2D 좌표로 변환되기 위해서는 [그림 1]과 같은 변환을 겪어야 합니다.
 
-![[그림 1]](/assets/img/post/gl_pipeline.png)
-
-[그림 1]
-
-여기서 Vertex Data가 3D 좌표라고 생각하면 됩니다.
+<figure>
+<img src="/assets/img/post/gl_pipeline.png" alt="fig 1." style="display:block; float:none; margin:0 auto;"/>
+<figcaption align="center"><b>[그림 1]</b></figcaption>
+</figure>
 
 ## Object Coordinates
 
 객체의 Local Coordinates이며 변형이 적용되기 전의 객체의 초기 위치 및 방향입니다.
 
-![[그림 2]](/assets/img/post/gl_model.png)
-
-[그림 2]
+<figure>
+<img src="/assets/img/post/gl_model.png" alt="fig 2." width="60%" style="display:block; margin:0 auto;"/>
+<figcaption align="center"><b>[그림 2]</b></figcaption>
+</figure>
 
 즉, [그림 2]처럼 모든 객체는 중심점을 `(0,0,0)`으로 설정한 고유의 축이 존재합니다.
 
