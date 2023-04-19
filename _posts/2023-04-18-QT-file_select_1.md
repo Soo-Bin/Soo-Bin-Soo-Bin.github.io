@@ -10,6 +10,9 @@ comments: true
 ## Drop 이벤트를 처리할 수 있는 Line Edit Widget 만들기
 
 ```python
+'''
+FileDropLineEdit.py
+'''
 from PyQt5.QtWidgets import QLineEdit, QToolButton
 from PyQt5.QtGui import QDragEnterEvent, QDropEvent
 from PyQt5.QtCore import pyqtSignal
@@ -56,6 +59,10 @@ class FileDropLineEdit(QLineEdit):
             self.setText(all_files[:-1])
 ```
 
+`setReadOnly(True)`를 호출하면 QLineEdit 위젯을 사용자가 수정할 수 없도록 설정한다. 이 설정 때문에 사용자가 Clear 버튼을 누르는 것과 같은 수정 작업을 수행하면 `textChanged()` 시그널은 발생하지 않는다.
+
+따라서, `findChild(QToolButton).setEnabled(True)`를 호출하여 Clear 버튼을 활성화해 준다. 이렇게 하면 Clear 버튼을 누를 때 `textChanged()` 시그널이 발생한다.
+
 ## Drop 이벤트 검증 및 파일 선택 위젯 만들기
 
 1. 빈 Widget을 하나 생성한 뒤, **QLabel, QWidget, QPushButton**을 추가한다.
@@ -65,6 +72,9 @@ class FileDropLineEdit(QLineEdit):
 3. 끌어다 놓기 이외에도 파일 추가 버튼을 눌러 파일을 추가할 수 있도록 한다.
 
 ```python
+'''
+FileSelectorWidget.py
+'''
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import pyqtSignal
