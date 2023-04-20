@@ -5,7 +5,7 @@ tags: [QT, Python]
 comments: true
 ---
 
-[파일 선택 위젯(1)](https://soo-bin.github.io/posts/QT-file_select_1/) 보다 기능이 추가된 위젯을 만들 것이다.
+[파일 선택 위젯(1)](https://soo-bin.github.io/posts/QT-file-select-1/) 보다 기능이 추가된 위젯을 만들 것이다.
 
 탐색기에 있는 파일/폴더를 끌어다 놓거나 버튼을 눌러 파일/폴더를 추가/삭제할 수 있다.
 
