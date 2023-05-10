@@ -74,17 +74,15 @@ class FileDropTreeWidget(QTreeWidget):
         self.add_subdirs(item, root)
 
     def add_subdirs(self, parent, root):
-        for dirpath, dirs, files in os.walk(root):
-            for dir_name in dirs:
-                sub_dir_path = os.path.join(dirpath, dir_name)
-                sub_dir_item = QTreeWidgetItem(parent, [sub_dir_path])
+        for item in os.listdir(root):
+            if os.path.isdir(os.path.join(root, item)):
+                sub_dir_path = os.path.join(root, item)
+                sub_dir_item = QTreeWidgetItem(parent, [item])
                 sub_dir_item.setIcon(0, QIcon("icon/mIconFolder.svg"))
                 parent.addChild(sub_dir_item)
                 self.add_subdirs(sub_dir_item, sub_dir_path)
-
-            for filename in files:
-                file_path = os.path.join(dirpath, filename)
-                file_item = QTreeWidgetItem(parent, [file_path])
+            if os.path.isfile(os.path.join(root, item)):
+                file_item = QTreeWidgetItem(parent, [item])
                 file_item.setIcon(0, QIcon("icon/mIconFile.svg"))  # 파일 아이콘 설정
                 parent.addChild(file_item)
 ```
@@ -107,8 +105,8 @@ from PyQt5 import uic
 form_class = uic.loadUiType("fileselectorlistwidget.ui")[0]
 
 class FileSelectorListWidget(QWidget, form_class):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent=None):
+        super(FileSelectorListWidget, self).__init__(parent)
         self.setupUi(self)
 
         # 버튼에 대한 이벤트 처리
