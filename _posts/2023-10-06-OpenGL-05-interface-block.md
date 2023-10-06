@@ -1,5 +1,5 @@
 ---
-title: OpenGL 인터페이스 블록
+title: OpenGL [05] 인터페이스 블록
 categories: [OpenGL]
 tags: [OpenGL, Python]
 comments: true

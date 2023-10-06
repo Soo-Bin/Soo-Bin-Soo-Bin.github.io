@@ -1,5 +1,5 @@
 ---
-title: OpenGL 테셀레이션
+title: OpenGL [06] 테셀레이션
 categories: [OpenGL]
 tags: [OpenGL, Python]
 comments: true

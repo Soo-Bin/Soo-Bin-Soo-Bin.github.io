@@ -1,5 +1,5 @@
 ---
-title: OpenGL 개념
+title: OpenGL [01] 개념
 categories: [OpenGL]
 tags: [OpenGL]
 comments: true

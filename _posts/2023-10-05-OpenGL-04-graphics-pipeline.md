@@ -1,5 +1,5 @@
 ---
-title: OpenGL 그래픽스 파이프라인
+title: OpenGL [04] 그래픽스 파이프라인
 categories: [OpenGL]
 tags: [OpenGL]
 comments: true
