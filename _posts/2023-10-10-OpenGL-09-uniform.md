@@ -197,4 +197,8 @@ print(sorted_combined)
 
 ![gl_roate_cube](/assets/img/post/gl_roate_cube.gif)
 
-결과 코드는 [_[여기]_]() 를 확인하면 된다.
+전체 코드는 [_[깃허브]_](https://github.com/Soo-Bin/helloGL/blob/main/09-uniform-block-1.py) 를 확인하면 된다.
+
+### Reference
+
+• OpenGL Super Bible 개정 6판

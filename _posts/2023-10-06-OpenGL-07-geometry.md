@@ -42,6 +42,8 @@ shader = shaders.compileProgram(..., geometry_shader, ...)
 
 ![gl_geometry_shader](/assets/img/post/gl_geometry_shader.png)
 
+전체 코드는 [_[깃허브]_](https://github.com/Soo-Bin/helloGL/blob/main/07-geometry.py) 를 확인하면 된다.
+
 ### Reference
 
 • OpenGL Super Bible 개정 6판

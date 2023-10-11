@@ -58,6 +58,8 @@ shader = shaders.compileProgram(vertex_shader, fragment_shader)
 
 ![gl_interface_block](/assets/img/post/gl_interface_block.png)
 
+전체 코드는 [_[깃허브]_](https://github.com/Soo-Bin/helloGL/blob/main/05-interface-block.py) 를 확인하면 된다.
+
 ### Reference
 
 • OpenGL Super Bible 개정 6판

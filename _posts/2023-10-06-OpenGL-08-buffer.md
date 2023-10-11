@@ -152,6 +152,8 @@ glVertexAttribPointer(color_location, 3, GL_FLOAT, GL_FALSE, 0, ctypes.c_void_p(
 glEnableVertexAttribArray(color_location)
 ```
 
+전체 코드는 [_[깃허브]_](https://github.com/Soo-Bin/helloGL/blob/main/08-vao-vbo-1.py) 를 확인하면 된다.
+
 ### Reference
 
 • OpenGL Super Bible 개정 6판
